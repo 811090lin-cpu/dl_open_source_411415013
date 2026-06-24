@@ -1,46 +1,26 @@
 # dl_open_source_411415013
 Deep learning models for traffic volume prediction
-# Traffic Flow Prediction: Feature Engineering Optimization
+# Traffic Flow Prediction
 
-This project focuses on enhancing traffic flow prediction accuracy through advanced feature engineering and automated data preprocessing techniques.
+A modular pipeline for traffic forecasting using time-series features.
 
----
+## Files
+- `train.py`: Data loading and cleaning utilities.
+- `traffic_train.py`: Integrated script for feature engineering and model training.
+- `traffic_test.py`: Inference and evaluation script.
 
-## Table of Contents
-1. [Project Goal](#project-goal)
-2. [Data Structure & Pipeline](#data-structure--pipeline)
-3. [Optimization: Before vs. After](#optimization-before-vs-after)
-4. [Usage](#usage)
-5. [Evaluation Metrics](#evaluation-metrics)
-6. [Dependencies](#dependencies)
+## Pipeline
+1. **Load Data**: `train.py` cleans the raw traffic CSV.
+2. **Feature Engineering**: `traffic_train.py` computes lags (`lag_1`, `lag_24`) and log-transformed weather features.
+3. **Training & Eval**: Run scripts to train the model and generate metrics (MAE/RMSE).
 
----
-
-## Project Goal
-This project aims to resolve data bottlenecks in traffic forecasting models, specifically addressing temporal dependency loss and high-dimensional noise. By implementing structured feature optimization, we achieve a more stable and accurate prediction system.
-
-## Data Structure & Pipeline
-The input data consists of raw traffic volume, weather logs, and timestamps. Our pipeline processes them as follows:
-
-* **Raw Data Input**: 
-    * `traffic_data.csv`: [Timestamp, Flow_Volume]
-    * `weather_data.csv`: [Timestamp, Condition, Precipitation]
-* **Data Processing Flow**:
-    1. **Alignment**: Merging traffic and weather data by timestamp.
-    2. **Transformation**: Applying feature engineering to convert raw inputs into model-ready tensors.
-
-
-
-## Optimization: Before vs. After
-
-| Feature | Baseline (Before) | Optimized (After) | Impact |
-| :--- | :--- | :--- | :--- |
-| **Temporal Context** | Single timestep only | `lag_1` & `lag_24` | Captures cyclic daily/hourly patterns |
-| **Weather Encoding** | High-dimensional One-hot | Weighted Numerical Mapping | Reduced noise and feature dimensionality |
-| **Data Distribution** | Raw precipitation values | `log1p` transformed values | Stabilized model training & convergence |
-
-## Usage
-
-### 1. Installation
+## Quick Start
 ```bash
+# 1. Install requirements
 pip install -r requirements.txt
+
+# 2. Run training
+python traffic_train.py
+
+# 3. Evaluate model
+python traffic_test.py
