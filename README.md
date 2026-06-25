@@ -1,8 +1,6 @@
 # dl_open_source_411415013
+## Traffic Flow Prediction
 Deep learning models for traffic volume prediction
-
-# Traffic Flow Prediction
-
 A modular pipeline for traffic forecasting using time-series features.
 
 ## Repository Structure
@@ -34,6 +32,29 @@ A modular pipeline for traffic forecasting using time-series features.
 ### Legacy Structure (Original Version)
 - `traffic_train.py`: Integrated script for feature engineering and model training.
 - `traffic_test.py`: Inference and evaluation script.
+
+## Dataset Overview
+The **Metro Interstate Traffic Volume** dataset provides historical hourly traffic records for Interstate 94, documenting the relationship between traffic flow and various meteorological factors.
+
+* **Source**: [Metro Interstate Traffic Volume (Kaggle)](https://www.kaggle.com/datasets/pooriamst/metro-interstate-traffic-volume)
+
+### Feature Definitions
+| Feature | Type | Description |
+| :--- | :--- | :--- |
+| `date_time` | Temporal | The chronological timestamp of the observation. |
+| `traffic_volume` | Target | Total number of vehicles passing the station per hour. |
+| `holiday` | Categorical | Indicates if the date is a US public holiday or contains a major event. |
+| `temp` | Meteorological | Average temperature in Kelvin. |
+| `rain_1h` | Meteorological | Amount of precipitation (rain) in millimeters occurred in the hour. |
+| `snow_1h` | Meteorological | Amount of snowfall in millimeters occurred in the hour. |
+| `clouds_all` | Meteorological | Percentage of cloud cover. |
+| `weather_main` | Categorical | Short textual category (e.g., Clear, Clouds, Rain, Snow, Mist). |
+| `weather_description` | Categorical | Detailed, specific textual description of the current weather. |
+
+### Feature Categories
+* **Temporal Features**: The `date_time` column enables the extraction of seasonal, weekly, and daily cycles.
+* **Meteorological Features**: `temp`, `rain_1h`, `snow_1h`, and `clouds_all` provide quantitative environmental data that influence traffic flow.
+* **Categorical Features**: `holiday`, `weather_main`, and `weather_description` provide the qualitative context necessary for understanding specific temporal records.
 
 ## Architectural Philosophy
 
