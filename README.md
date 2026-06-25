@@ -1,7 +1,19 @@
 # dl_open_source_411415013
 ## Traffic Flow Prediction
-Deep learning models for traffic volume prediction
-A modular pipeline for traffic forecasting using time-series features.
+Deep learning models for traffic volume prediction. 
+
+This project provides a professional-grade, modular pipeline for forecasting hourly traffic volume. Unlike traditional statistical models that struggle with non-linear traffic patterns, this system leverages Spatiotemporal Deep Learning to analyze historical hourly records. By integrating meteorological data, cyclical time features, and past traffic observations, the model effectively maps complex environmental influences (such as sudden weather changes and holiday effects) to traffic throughput. The core of this system is a high-performance Hybrid CNN-LSTM architecture designed to extract local spatial-temporal features while simultaneously modeling long-range cyclic dependencies.
+
+## Table of Contents
+* [Dataset Overview](#dataset-overview)
+* [Repository Structure](#repository-structure)
+* [Architectural Philosophy](#architectural-philosophy)
+* [Comparison of Implementation Strategies](#comparison-of-implementation-strategies)
+* [Prerequisites](#prerequisites)
+* [Quick Start](#quick-start)
+* [Metrics](#metrics)
+
+---
 ## Dataset Overview
 The **Metro Interstate Traffic Volume** dataset provides historical hourly traffic records for Interstate 94, documenting the relationship between traffic flow and various meteorological factors.
 
@@ -89,3 +101,27 @@ This analysis contrasts the legacy integrated script (`traffic_train.py`) with t
 
 * **Feature Noise Reduction**:
     * The current script adopts a more surgical approach to feature selection by explicitly dropping redundant or non-informative columns (e.g., `date_time`, `weather_description`) that were previously processed inefficiently, resulting in a cleaner input space for the CNN-LSTM architecture.
+
+## Prerequisites
+To run this project, ensure your environment includes the following:
+* **Python**: 3.9 or higher is recommended.
+* **Core Libraries**:
+    * `tensorflow` (for model training and inference)
+    * `pandas` & `numpy` (for data manipulation)
+    * `scikit-learn` (for data preprocessing and scaling)
+    * `joblib` (for model and scaler persistence)
+    * `matplotlib` (for visualization)
+
+## Quick Start
+Note: The provided scripts are currently configured for Google Colab (drive.mount). If running locally, please update the file paths   
+(e.g., change /content/drive/MyDrive/... to your local path) and remove the drive.mount() code blocks.
+1. **Prepare Data**: Ensure `Metro_Interstate_Traffic_Volume.csv` is placed in the root directory.
+2. **Train Model**: Run the training script to generate model artifacts in the `model/` directory.
+   ```bash
+   python train.py
+   ```
+3. **Evaluation**:To evaluate the model's performance and generate diagnostic visualizations, use the `test.py` script. This script loads the pre-trained model and the corresponding scalers to perform inference on the test set.
+
+    ```bash
+    python test.py
+    ```
