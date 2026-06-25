@@ -5,7 +5,27 @@ Deep learning models for traffic volume prediction
 
 A modular pipeline for traffic forecasting using time-series features.
 
-## Repository Architecture
+## Repository Structure
+
+```text
+├── Metro_Interstate_Traffic_Volume.csv  # Dataset
+├── train.py                             # Current: Data loading & cleaning
+├── test.py                              # Current: Core inference & validation logic
+├── traffic_train.py                     # Legacy: Integrated training script
+├── traffic_test.py                      # Legacy: Inference & evaluation script
+│
+├── model/                               # Current: Optimized model assets
+│   ├── history.json                     # Training history
+│   ├── model.keras                      # Model weights
+│   ├── model_scaler_X.pkl               # Input scaler
+│   └── model_scaler_y.pkl               # Target scaler
+│
+└── traffic_model/                       # Legacy: Original model assets
+    ├── traffic_history.json             # Training history
+    ├── traffic_model.keras              # Model weights
+    ├── traffic_model_scaler_X.pkl       # Input scaler
+    └── traffic_model_scaler_y.pkl       # Target scaler
+```
 
 ### Current Structure (Issue Optimized)
 - `train.py`: Data loading and cleaning utilities.
